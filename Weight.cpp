@@ -10,3 +10,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "Weight.h"
+
+using namespace std;
+
+const float Weight::UNKNOWN_WEIGHT = -1;
+const float Weight::KILOS_IN_A_POUND = 0.45359237;
+const float Weight::SLUGS_IN_A_POUND = 0.03108095;
+
+const string Weight::POUND_LABEL = "lb";
+const string Weight::KILO_LABEL = "kg";
+const string Weight::SLUG_LABEL = "slug";

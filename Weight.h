@@ -9,13 +9,27 @@
 /// @date   16_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef EE205_LAB12A_FATCAT_WEIGHT_H
-#define EE205_LAB12A_FATCAT_WEIGHT_H
+//#ifndef EE205_LAB12A_FATCAT_WEIGHT_H
+//#define EE205_LAB12A_FATCAT_WEIGHT_H
+#include <string>
 
+using namespace std;
 
 class Weight {
+public:
+
+    enum UnitOfWeight { POUND, KILO, SLUG };
+
+    static const float    UNKNOWN_WEIGHT;
+    static const float    KILOS_IN_A_POUND;
+    static const float    SLUGS_IN_A_POUND;
+
+    static const string POUND_LABEL;
+    static const string KILO_LABEL;
+    static const string SLUG_LABEL;
+
 
 };
 
 
-#endif //EE205_LAB12A_FATCAT_WEIGHT_H
+//#endif //EE205_LAB12A_FATCAT_WEIGHT_H

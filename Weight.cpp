@@ -63,11 +63,12 @@ bool Weight::validate() const noexcept {
 }
 
 /////////////////////////////Constructors///////////////////////////////
-
 Weight::Weight() noexcept {
     assert( validate() );
 }
 Weight::Weight(float newWeight) {
+    setWeight( newWeight );
+    assert( validate() );
 }
 Weight::Weight(UnitOfWeight newUnitOfWeight) noexcept {
 
@@ -76,3 +77,76 @@ Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight) {}
 Weight::Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight) {}
 Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight) {}
 
+///////////Getters//////////
+float Weight::getWeight() const noexcept {
+    if( bIsKnown ) {
+        return weight;
+    }
+    else {
+        return UNKNOWN_WEIGHT;
+    }
+}
+float Weight::getMaxWeight() const noexcept {
+    if( bHasMax ) {
+        return maxWeight;
+    }
+    else {
+        return UNKNOWN_WEIGHT;
+    }
+}
+
+/////////Setters////////////
+void Weight::setWeight( const float newWeight ) {
+    if( isWeightValid( newWeight ) == true) {
+        bIsKnown = true;
+        weight = newWeight;
+    }
+}
+void Weight::setWeight(const float newWeight, UnitOfWeight weightUnits) {
+    setWeight( convertWeight( newWeight, weightUnits, unitOfWeight ));
+}
+
+////Conversion/////
+float Weight::fromPoundToKilogram(float pound) noexcept {
+    return (pound * KILOS_IN_A_POUND);
+}
+float Weight::fromKilogramToPound(float kilogram) noexcept {
+    return (kilogram / KILOS_IN_A_POUND);
+}
+float Weight::fromPoundToSlug(float pound) noexcept {
+    return (pound * SLUGS_IN_A_POUND);
+}
+float Weight::fromSlugToPound(float slug) noexcept {
+    return (slug / SLUGS_IN_A_POUND);
+}
+
+float Weight::convertWeight(float fromWeight,
+                            UnitOfWeight fromUnit,
+                            UnitOfWeight toUnit) noexcept {
+    float commonWeight = 0;
+    float toWeight = 0;
+
+    switch( fromUnit ) {
+        case POUND:
+            commonWeight = fromWeight;
+            break;
+        case KILO:
+            commonWeight = fromKilogramToPound( fromWeight );
+            break;
+        case SLUG:
+            commonWeight = fromSlugToPound( fromWeight );
+            break;
+    }
+    switch( toUnit ) {
+        case POUND:
+            toWeight = commonWeight;
+            break;
+        case KILO:
+            toWeight = fromPoundToKilogram( commonWeight );
+            break;
+        case SLUG:
+            toWeight = fromPoundToSlug( commonWeight );
+            break;
+    }
+    return toWeight;
+}

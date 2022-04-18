@@ -8,15 +8,15 @@
 /// @author Jordan Cortado <jcortado@hawaii.edu>
 /// @date   16_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
-#pragma once
 
+#include <iostream>
 #include <string>
 
 using namespace std;
 
 class Weight {
 public:
-    //////////Constants////////////
+    ////////////////////////Constants///////////////////////////////
     enum UnitOfWeight { POUND, KILO, SLUG };
 
     static const float    UNKNOWN_WEIGHT;
@@ -27,7 +27,7 @@ public:
     static const string KILO_LABEL;
     static const string SLUG_LABEL;
 
-    /////////////Constructors//////////////////////
+    ////////////////////////Constructors//////////////////////////////
     Weight() noexcept;
     Weight(float newWeight);
     Weight(UnitOfWeight newUnitOfWeight) noexcept;
@@ -36,7 +36,7 @@ public:
     Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight);
     Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight);
 
-    ///////////////////Getters///////////////
+    /////////////////////////////Getters//////////////////////////////
     bool  isWeightKnown() const noexcept;
     bool  hasMaxWeight() const noexcept;
     float getWeight() const noexcept;
@@ -44,34 +44,32 @@ public:
     float getMaxWeight() const noexcept;
     UnitOfWeight getWeightUnit() const noexcept;
 
-    ////////Setters//////////
+    //////////////////////////Setters////////////////////////////////
     void setWeight( float newWeight );
     void setWeight( float newWeight, UnitOfWeight weightUnits );
 
-    ////////Conversion Methods/////////
+    ///////////////////////Conversion Methods///////////////////////
     static float fromKilogramToPound( float kilogram ) noexcept;
     static float fromPoundToKilogram( float pound ) noexcept;
     static float fromSlugToPound( float slug ) noexcept;
     static float fromPoundToSlug( float pound ) noexcept;
     static float convertWeight( float fromWeight, UnitOfWeight fromUnit, UnitOfWeight toUnit ) noexcept;
 
-    ///////////Validation///////////////
+    /////////////////////////Validation//////////////////////////////
     bool isWeightValid( float checkWeight ) const noexcept;
     bool validate() const noexcept;
     void print() const noexcept;
 
 private:
-    /////////Member Variables//////////
+    ////////////////////Member Variables////////////////////////////
     bool bIsKnown;
     bool bHasMax;
     enum UnitOfWeight unitOfWeight;
     float weight{};
     float maxWeight{};
 
-    ///////Setter//////////
+    ///////////////////////////Setter//////////////////////////////
     void setMaxWeight( float newMaxWeight );
 
 };
 
-
-//#endif //EE205_LAB12A_FATCAT_WEIGHT_H

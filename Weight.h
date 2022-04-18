@@ -8,9 +8,8 @@
 /// @author Jordan Cortado <jcortado@hawaii.edu>
 /// @date   16_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
+#pragma once
 
-//#ifndef EE205_LAB12A_FATCAT_WEIGHT_H
-//#define EE205_LAB12A_FATCAT_WEIGHT_H
 #include <string>
 
 using namespace std;

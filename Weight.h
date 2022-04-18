@@ -49,9 +49,19 @@ public:
     void setWeight( float newWeight );
     void setWeight( float newWeight, UnitOfWeight weightUnits );
 
+    ////////Conversion Methods/////////
+    static float fromKilogramToPound( float kilogram ) noexcept;
+    static float fromPoundToKilogram( float pound ) noexcept;
+    static float fromSlugToPound( float slug ) noexcept;
+    static float fromPoundToSlug( float pound ) noexcept;
+    static float convertWeight( float fromWeight, UnitOfWeight fromUnit, UnitOfWeight toUnit ) noexcept;
+
+    ///////////Validation///////////////
+    bool isWeightValid( float checkWeight ) const noexcept;
+    bool validate() const noexcept;
+    void print() const noexcept;
 
 private:
-
     /////////Member Variables//////////
     bool bIsKnown;
     bool bHasMax;
@@ -59,7 +69,8 @@ private:
     float weight{};
     float maxWeight{};
 
-
+    ///////Setter//////////
+    void setMaxWeight( float newMaxWeight );
 
 };
 

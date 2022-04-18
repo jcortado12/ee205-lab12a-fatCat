@@ -17,7 +17,7 @@ using namespace std;
 
 class Weight {
 public:
-
+    //////////Constants////////////
     enum UnitOfWeight { POUND, KILO, SLUG };
 
     static const float    UNKNOWN_WEIGHT;
@@ -37,15 +37,27 @@ public:
     Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight);
     Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight);
 
+    ///////////////////Getters///////////////
+    bool  isWeightKnown() const noexcept;
+    bool  hasMaxWeight() const noexcept;
+    float getWeight() const noexcept;
+    float getWeight( UnitOfWeight weightUnits ) const noexcept;
+    float getMaxWeight() const noexcept;
+    UnitOfWeight getWeightUnit() const noexcept;
+
+    ////////Setters//////////
+    void setWeight( float newWeight );
+    void setWeight( float newWeight, UnitOfWeight weightUnits );
+
+
 private:
 
-
-
-
-
-
-
-
+    /////////Member Variables//////////
+    bool bIsKnown;
+    bool bHasMax;
+    enum UnitOfWeight unitOfWeight;
+    float weight{};
+    float maxWeight{};
 
 
 

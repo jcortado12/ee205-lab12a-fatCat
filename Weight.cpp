@@ -37,6 +37,30 @@ bool Weight::hasMaxWeight() const noexcept {
     }
     return true;
 }
+bool Weight::isWeightValid(float checkWeight) const noexcept {
+    if( checkWeight <= 0 ) {
+        return false;
+    }
+    if( bHasMax == true ) {
+        if( checkWeight > maxWeight ) {
+            return false;
+        }
+    }
+    return true;
+}
+bool Weight::validate() const noexcept {
+    if( bIsKnown == true ) {
+        if( isWeightValid(weight) == false ) {
+            return false;
+        }
+    }
+    if( bHasMax == true ) {
+        if ( isWeightValid( maxWeight) == false) {
+            return false;
+        }
+    }
+    return true;
+}
 
 /////////////////////////////Constructors///////////////////////////////
 
